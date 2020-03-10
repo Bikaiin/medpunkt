@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pacient_queue.models import PatientCard, Patient, Vacinations, Disease, Diagnosis
+from first_aid_post.models import PatientCard, Patient, Vacinations, Disease, Diagnosis
 
 admin.site.register(PatientCard)
 admin.site.register(Patient)

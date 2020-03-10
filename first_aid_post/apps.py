@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PacientQueueConfig(AppConfig):
-    name = 'pacient_queue'
+    name = 'first_aid_post'
