@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('queue/', include('pacient_queue.urls')),
+    path('', include('first_aid_post.urls')),
     path('admin/', admin.site.urls),
 ]
