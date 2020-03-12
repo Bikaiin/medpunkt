@@ -1,10 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{% static 'first_aid_post/queue.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    {{ queue }}
+    <div class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Ваше место в очереди: <b>{{place}}!</b></h1>
+        <p>Примерное время ожидания <b>{{time}}</b> минут.</p>
+    </div>
+   
 </body>
 </html>

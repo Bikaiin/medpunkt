@@ -19,17 +19,23 @@ def index(request):
     if form.is_valid():
         username = form.cleaned_data['username']
         patient = Patient.objects.get(fullname=username)
-        queue.append(patient)
-        return HttpResponseRedirect(reverse('queue_view'))
+        queue.append(patient.id)
+        return HttpResponseRedirect(reverse('queue_view', kwargs={'user_id':patient.id}))
     ctx = {
         'form': form
     }
     return render(request, 'index.html', ctx)
 
-def queue_view(request):
+def queue_view(request, user_id):
+    place = queue.index(user_id) +1
+    time = (place - 1) * 5
     ctx = {
-        'queue':queue
+        'place':place,
+        'queue':queue,
+        'time': time
     }
     return render(request, 'queue.html', ctx)
 
+def patient_view(request):
+    return render(request, 'queue.html', ctx)
 
