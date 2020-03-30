@@ -3,5 +3,10 @@
     max-width: 420px;
     padding: 15px;
     margin: auto;
-    margin-top: 33%;
+}
+
+.form-my {
+    min-width: 20%;
+    max-width: 33%;
+    display: inline !important;
 }

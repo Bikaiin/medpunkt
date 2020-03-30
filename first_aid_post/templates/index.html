@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100 w-100 position-absolute">
     <form class="form-signin reg-form" action="" method="POST">{% csrf_token %}
         {{ form|crispy}}
         <input type="submit" class="btn btn-primary " value="Встать в очередь">

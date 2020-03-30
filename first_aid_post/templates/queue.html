@@ -7,10 +7,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100 w-100 position-absolute">
     <div class="form-signin">
         <h1 class="h3 mb-3 font-weight-normal">Ваше место в очереди: <b>{{place}}!</b></h1>
+        {% if place > 1 %}
         <p>Примерное время ожидания <b>{{time}}</b> минут.</p>
+        {% else %}
+        <p>Ожидайте вас скоро вызовут</p>
+        {% endif %}
     </div>
    
 </body>

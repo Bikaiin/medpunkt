@@ -1,0 +1,178 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ patient }}</h1>
+    <div class="btn-group mr-2">
+      <a href="{% url 'patientnext_view' %}" type="button" class="btn btn-sm btn-primary">Следующий</a>
+    </div>
+</div>
+
+
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Основная информация</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Привики</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Заболевания</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+  изменить
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ form_prim|crispy}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <table class="table">
+      <tbody>
+      <thead>
+        <tr>
+         <th scope="col"></th>
+         <th scope="col"></th>
+        
+        </tr>
+      </thead>
+      <tr>
+        <th scope="row">Должность</th>
+        <td>{{ patient.position }}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Подразделение</th>
+        <td>{{ patient.subdivision }}</td>
+      </tr>
+
+      <tr>
+        <th scorowpe="">Условия труда</th>
+        <td>{{ patient.working_conditions }}</td>
+      </tr>
+    
+      <tr>
+        <th scope="row">Рост</th>
+        <td>{{ card.height }}см</td>
+      </tr>
+      <tr>
+        <th scope="row">Вес</th>
+        <td>{{ card.weight }}кг</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal1">
+  добавить
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Добавить прививку</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-signin reg-form" action="" method="POST">{% csrf_token %}
+      <div class="modal-body">
+        {{ form_add_vac|crispy}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <table class="table">
+      <thead>
+        <tr>
+         <th scope="col">#</th>
+         <th scope="col">Название</th>
+        </tr>
+      </thead>
+      <tbody>
+      {%for vac in vacinations %}
+      <tr>
+        <th scope="row">{{vac.id }}</th>
+        <td>{{vac}}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+  <div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal2">
+  добавить
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Добавить заболевание</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-signin reg-form" action="" method="POST">{% csrf_token %}
+      <div class="modal-body">
+        {{ form_add_des|crispy}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <table class="table">
+      <thead>
+        <tr>
+         <th scope="col">дата</th>
+         <th scope="col">Название</th>
+         <th scope="col">Подробность</th>
+        </tr>
+      </thead>
+      <tbody>
+      {%for d in diagnosis %}
+      <tr>
+        <th scope="row">{{d.date }}</th>
+        <td>{{d.disease}}</td>
+        <td>{{d.description}}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}
